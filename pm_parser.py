@@ -13,6 +13,7 @@ class BasicParser(Parser):
 
     def __init__(self):
         self.env = { }
+        
     @_('')
     def statement(self, p):
         pass
