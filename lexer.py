@@ -1,34 +1,77 @@
 from sly import Lexer
 
 class BasicLexer(Lexer):
-tokens = { NAME, Number, STRING, IF, PRINT, THEN, ELSE, FOR, FUN, TO, ARROW, EQEQ }
-ignore = '\t '
+    tokens = { NAME, Number, STRING, IF, PRINT, THEN, ELSE, FOR, FUN, TO, ARROW, EQEQ }
+    ignore = '\t '
 
-literals = { '=', '+', '-', '/', '*', '(', ')', ',', ';'}
+    literals = { '=', '+', '-', '/', '*', '(', ')', ',', ';'}
 
-#Pendefinisian token
-IF = r'SEANDAINYO'
-PRINT = r'CETAK'
-THEN = r'MANGKONYO'
-ELSE = r'LAINNYO'
-FOR = r'UNTUK'
-FUN = r'FUNGSI'
-TO = r'SAMPAI'
-ARROW = r'->'
-NAME = r'[a-zA-Z_] [a-Za-Z0-9_]*'
-STRING = r'\".*?\"'
+    #Pendefinisian token
+    IF = r'SEANDAINYO'
+    PRINT = r'CETAK'
+    THEN = r'MANGKONYO'
+    ELSE = r'LAINNYO'
+    FOR = r'UNTUK'
+    FUN = r'FUNGSI'
+    TO = r'SAMPAI'
+    ARROW = r'->'
+    NAME = r'[a-zA-Z_] [a-Za-Z0-9_]*'
+    STRING = r'\".*?\"'
 
-EQEQ = r'=='
+    EQEQ = r'=='
 
-@_(r'\d+')
-def NUMBER (self, t):
-t.value = int(t.value)
-return tokens
+    #token bilangan
+    @_(r'\d+')
+    def NUMBER(self, t):
 
-@_(r'#.*')
+        #konvert ke integer
+        t.value = int(t.value)
+        return t
+    
+    #token komen
+    @_(r'//.*')
     def COMMENT(self, t):
-        pass
+        pass 
 
+    #token newline
     @_(r'\n+')
-    def newline(self,t ):
+    def newline(self, t):
         self.lineno = t.value.count('\n')
+        
+    FUN = r'FUNGSI'
+    TO = r'SAMPAI'
+    ARROW = r'->'
+    NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    STRING = r'\".*?\"'
+    EQEQ = r'=='
+
+    #token bilangan
+    @_(r'\d+')
+    def NUMBER(self, t):
+
+        #konvert ke integer
+        t.value = int(t.value)
+        return t
+    
+    #token komen
+    @_(r'//.*')
+    def COMMENT(self, t):
+        pass 
+
+    #token newline
+    @_(r'\n+')
+    def newline(self, t):
+        self.lineno = t.value.count('\n')
+
+if __name__ == '__main__':
+    lexer = BasicLexer()
+    env = {}
+    while True:
+        try:
+            text = input('pm >')
+        except EOFError:
+            break
+        if text:
+            lex = lexer.tokenize(text)
+            for token in lex:
+                print(token)
