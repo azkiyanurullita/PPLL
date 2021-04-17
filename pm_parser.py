@@ -1,9 +1,9 @@
 from sly import Parser
 
-import px_lexer
+import pm_lexer
 
 class BasicParser(Parser):
-    tokens = px_lexer.BasicLexer.tokens
+    tokens = pm_lexer.BasicLexer.tokens
 
     precedence = (
         ('left', '+', '-'),
@@ -90,12 +90,12 @@ class BasicParser(Parser):
         return ('print', p.STRING)
 
 if __name__ == '__main__':
-    lexer = px_lexer.BasicLexer()
+    lexer = pm_lexer.BasicLexer()
     parser = BasicParser()
     env = {}
     while True:
         try:
-            text = input('px > ')
+            text = input('pm > ')
         except EOFError:
             break
         if text:
