@@ -38,30 +38,6 @@ class BasicLexer(Lexer):
     def newline(self, t):
         self.lineno = t.value.count('\n')
         
-    FUN = r'FUNGSI'
-    TO = r'SAMPAI'
-    ARROW = r'->'
-    NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    STRING = r'\".*?\"'
-    EQEQ = r'=='
-
-    #token bilangan
-    @_(r'\d+')
-    def NUMBER(self, t):
-
-        #konvert ke integer
-        t.value = int(t.value)
-        return t
-    
-    #token komen
-    @_(r'//.*')
-    def COMMENT(self, t):
-        pass 
-
-    #token newline
-    @_(r'\n+')
-    def newline(self, t):
-        self.lineno = t.value.count('\n')
 
 if __name__ == '__main__':
     lexer = BasicLexer()
