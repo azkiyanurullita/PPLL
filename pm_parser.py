@@ -3,17 +3,18 @@ from sly import Parser
 import pm_lexer
 
 class BasicParser(Parser):
+    #token diteruskan dari lexer ke parser
     tokens = pm_lexer.BasicLexer.tokens
-
+  
     precedence = (
         ('left', '+', '-'),
         ('left', '*', '/'),
         ('right', 'UMINUS'),
-        )
-
+    )
+  
     def __init__(self):
         self.env = { }
-        
+  
     @_('')
     def statement(self, p):
         pass
@@ -23,8 +24,8 @@ class BasicParser(Parser):
         return ('for_loop', ('for_loop_setup', p.var_assign, p.expr), p.statement)
 
     @_('IF condition THEN statement ELSE statement')
-    def statement(self, p):
-        return ('if_stmt', p.condition, ('branch', p.statement0, p.statement1))
+    def statement(seld, p):
+        return ('if_stmt', p.condition, ('branch', p.statement0, pstatement1))
 
     @_('FUN NAME "(" ")" ARROW statement')
     def statement(self, p):
@@ -32,7 +33,7 @@ class BasicParser(Parser):
 
     @_('NAME "(" ")"')
     def statement(self, p):
-        return ('fun_call', p.NAME)
+        return ('fun call', p.NAME)
 
     @_('expr EQEQ expr')
     def condition(self, p):
@@ -77,17 +78,13 @@ class BasicParser(Parser):
     @_('NAME')
     def expr(self, p):
         return ('var', p.NAME)
-
+    
     @_('NUMBER')
     def expr(self, p):
         return ('num', p.NUMBER)
-        
+
     @_('PRINT expr')
     def expr(self, p):
-        return ('print', p.expr)
-
-    @_('PRINT STRING')
-    def statement(self, p):
         return ('print', p.STRING)
 
 if __name__ == '__main__':
