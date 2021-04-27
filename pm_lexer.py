@@ -1,12 +1,12 @@
 from sly import Lexer
 
 class BasicLexer(Lexer):
-    tokens = { NAME, NUMBER, STRING, IF, PRINT, THEN, ELSE, FOR, FUN, TO, ARROW, EQEQ }
-    ignore = '\t '
+    tokens = {NAME, NUMBER, STRING, IF, PRINT, THEN, ELSE, FOR, FUN, TO, ARROW, EQEQ}
+    ignore = '\t'
 
-    literals = { '=', '+', '-', '/', '*', '(', ')', ',', ';'}
+    literals = {'=', '+', '-', '/', '*', '(', ')', ',', ';'}
 
-    #Pendefinisian token
+    #pendefinisian token
     IF = r'SEANDAINYO'
     PRINT = r'CETAK'
     THEN = r'MANGKONYO'
@@ -15,9 +15,8 @@ class BasicLexer(Lexer):
     FUN = r'FUNGSI'
     TO = r'SAMPAI'
     ARROW = r'->'
-    NAME = r'[a-zA-Z_] [a-Za-Z0-9_]*'
+    NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
     STRING = r'\".*?\"'
-
     EQEQ = r'=='
 
     #token bilangan
@@ -37,8 +36,8 @@ class BasicLexer(Lexer):
     @_(r'\n+')
     def newline(self, t):
         self.lineno = t.value.count('\n')
-        
-
+    
+   
 if __name__ == '__main__':
     lexer = BasicLexer()
     env = {}
@@ -49,5 +48,5 @@ if __name__ == '__main__':
             break
         if text:
             lex = lexer.tokenize(text)
-            for token in lex:
-                print(token)
+            for tokens in lex:
+                print(tokens)
