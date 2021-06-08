@@ -4,7 +4,7 @@ import pm_interpreter
 
 from sys import *
 
-#DENGAN MASUKAN .px
+#DENGAN MASUKAN .pm
 lexer = pm_lexer.BasicLexer()
 parser = pm_parser.BasicParser()
 env = {}
