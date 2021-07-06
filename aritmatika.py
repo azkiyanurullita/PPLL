@@ -12,7 +12,7 @@
 # Pembagian
 4/2
 
-CETAK "Bisa juga dengan cara seperti dibawah ini "
+CETAK "Bisa juga dengan cara seperti dibawah ini"
 
 # Mendeklarasikan isi variabel terlebih dahulu baru 
 # kemudian variabelnya dioperasikan
