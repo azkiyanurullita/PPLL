@@ -1,5 +1,3 @@
-#MASIH ERROR
-
 import pm_lexer
 import pm_parser
 import pm_interpreter
