@@ -1,11 +1,11 @@
 from sly import Lexer
 
 class BasicLexer(Lexer):
-    tokens = {NAME, NUMBER, STRING, IF, PRINT, THEN, ELSE, FOR, FUN, TO, ARROW, EQEQ, PLUS, MINUS, TIMES, DIVIDE, ASSIGN, EQ, LT, LE, GT, GE, NE}
+    tokens = {NAME, NUMBER, STRING, IF, PRINT, THEN, ELSE, FOR, FUN, TO, ARROW, EQEQ, PLUS, MINUS, TIMES, DIVIDE, LT, LE, GT, GE, NE}
     ignore = '\t '
     ignore_comment = r'\#.*'
 
-    literals = {'(', ')', '{', '}' ',', ';'}
+    literals = {'=', '(', ')', '{', '}' ',', ';'}
 
     #pendefinisian token
     IF      = r'SEANDAINYO'
@@ -23,11 +23,11 @@ class BasicLexer(Lexer):
     MINUS   = r'-'
     TIMES   = r'\*'
     DIVIDE  = r'/'
-    ASSIGN  = r'='
     LE      = r'<='
     LT      = r'<'
     GE      = r'>='
     GT      = r'>'
+    NE      = r'!='
 
     #token bilangan
     @_(r'\d+')
