@@ -1,4 +1,8 @@
-Project ini merupakan tugas dari mata kuliah Teknik Kompilasi
+# PPLL (PL2)
+
+PPLL merupakan singkatan dari Python Palembang Local Language
+
+Project ini merupakan tugas akhir dari mata kuliah Teknik Kompilasi
 
 Teknik Informatika 2019 Rombel 1 Kelompok 6
 
