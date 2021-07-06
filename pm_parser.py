@@ -7,8 +7,8 @@ class BasicParser(Parser):
     tokens = pm_lexer.BasicLexer.tokens
   
     precedence = (
-        ('left', '+', '-'),
-        ('left', '*', '/'),
+        ('left', 'PLUS', 'MINUS'),
+        ('left', 'TIMES', 'DIVIDE'),
         ('right', 'UMINUS'),
     )
   
@@ -25,7 +25,7 @@ class BasicParser(Parser):
 
     @_('IF condition THEN statement ELSE statement')
     def statement(seld, p):
-        return ('if_stmt', p.condition, ('branch', p.statement0, pstatement1))
+        return ('if_stmt', p.condition, ('branch', p.statement0, p.statement1))
 
     @_('FUN NAME "(" ")" ARROW statement')
     def statement(self, p):
@@ -55,21 +55,41 @@ class BasicParser(Parser):
     def statement(self, p):
         return (p.expr)
 
-    @_('expr "+" expr')
+    @_('expr PLUS expr')
     def expr(self, p):
         return ('add', p.expr0, p.expr1)
 
-    @_('expr "-" expr')
+    @_('expr MINUS expr')
     def expr(self, p):
         return ('sub', p.expr0, p.expr1)
 
-    @_('expr "*" expr')
+    @_('expr TIMES expr')
     def expr(self, p):
         return ('mul', p.expr0, p.expr1)
 
-    @_('expr "/" expr')
+    @_('expr DIVIDE expr')
     def expr(self, p):
         return ('div', p.expr0, p.expr1)
+
+    @_('expr LE expr')
+    def expr(self, p):
+        return ('Less_than_or_equal_to', p.expr0, p.expr1)
+
+    @_('expr GT expr')
+    def expr(self, p):
+        return ('Greater_than', p.expr0, p.expr1)
+
+    @_('expr LT expr')
+    def expr(self, p):
+        return ('Less_than', p.expr0, p.expr1)
+
+    @_('expr GE expr')
+    def expr(self, p):
+        return ('Greater_than_or_equal_to', p.expr0, p.expr1)
+
+    @_('expr NE expr')
+    def expr(self, p):
+        return ('condition_not_equal', p.expr0, p.expr1)
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
