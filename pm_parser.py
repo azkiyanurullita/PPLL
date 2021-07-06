@@ -105,6 +105,10 @@ class BasicParser(Parser):
 
     @_('PRINT expr')
     def expr(self, p):
+        return ('print', p.expr)
+    
+    @_('PRINT STRING')
+    def statement(self, p):
         return ('print', p.STRING)
 
 if __name__ == '__main__':
