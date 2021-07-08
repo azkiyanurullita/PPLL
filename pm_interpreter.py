@@ -23,7 +23,7 @@ class BasicExecute:
 
         if node[0] == 'program':
             if node[1] == None:
-                se;f.walkTree(node[2])
+                self.walkTree(node[2])
             else:
                 self.walkTree(node[1])
                 self.walkTree(node[2])
