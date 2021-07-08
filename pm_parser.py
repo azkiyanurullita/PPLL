@@ -33,7 +33,7 @@ class BasicParser(Parser):
 
     @_('NAME "(" ")"')
     def statement(self, p):
-        return ('fun call', p.NAME)
+        return ('fun_call', p.NAME)
 
     @_('expr EQEQ expr')
     def condition(self, p):
@@ -106,7 +106,7 @@ class BasicParser(Parser):
     @_('PRINT expr')
     def expr(self, p):
         return ('print', p.expr)
-    
+
     @_('PRINT STRING')
     def statement(self, p):
         return ('print', p.STRING)
